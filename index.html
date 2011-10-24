@@ -1,0 +1,35 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <title>Geo-location</title>
+        <script type="text/javascript">
+
+        function handler(location)
+        {
+		$('#lat').html(location.coords.latitude);
+		$('#long').html(location.coords.longitude);
+		$.get("ajax.php?latitude="+location.coords.latitude+"&longitude="+location.coords.longitude, function(data) {
+			$('#results').html(data);
+		});
+        }
+        navigator.geolocation.getCurrentPosition(handler);
+
+        </script>
+</head>
+<body>
+Your Latitude: <span id='lat'></span><br />
+Your Longitude: <span id='long'></span><br /><br />
+<div id='results'></div><br /><br />
+This script will attempt to pinpoint your location.
+<br /><br />
+Geolocation can be calculated based on:
+<ul>
+<li>GPS (if available)</li>
+<li>Available wi-fi networks and signal strengths</li>
+<li>Available cell towers and signal strengths</li>
+<li>IP Address lookup</li>
+</ul>
+<br /><br />
+<a href='http://stackoverflow.com/questions/3633621/how-does-chrome-know-my-geolocation'>Stackoverflow on topic.</a>
+</body>
+</html>
